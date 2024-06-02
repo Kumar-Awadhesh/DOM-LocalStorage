@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM & Local Storage</title>
+    <style>
+        .thead>th{
+            background-color: green;
+            width: 30%;
+        }
+    
+        table{
+            display: block;
+            width: 40%;
+            border: 1px solid;
+            margin: auto;
+            box-shadow: 1px, 2px, 1px, 2px;
+        }
+        .rem{
+            background-color: green;
+            color: white;
+            border-radius: 5px;
+            width: 80px;
+            height: 35px;
+        }
+        .stat{
+            border: 1px solid;
+            border-radius: 10px;
+            
+        }
+        .stat>:first-child{
+            background-color: green;
+        }
+        td{
+            text-align: center;
+           
+        }
+       
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr class="thead">
+                <th>Name</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+</body>
+</html>
+<script>
+    const products=[
+        {
+            Name:"task1",
+            Priority:"medium",
+            Status:"in-progress",
+            
+        },
+        {
+            Name:"task2",
+            Priority:"low",
+            Status:"pending",
+            
+        },
+        {
+            Name:"task3",
+            Priority:"high",
+            Status:"complete",
+           
+        }
+    ]
+    document.addEventListener("DOMContentLoaded", function(){
+        const tbody=document.querySelector(("tbody"))
+
+        products.forEach((el) => {
+            const row = document.createElement("tr");
+            
+            row.innerHTML=`
+            <td>${el.Name}</td>
+            <td>${el.Priority}</td>
+            <td class="stat">${el.Status}</td>
+            <td><button class="rem">remove</button></td>
+            `;
+
+            const removebtn=row.querySelector(".rem")
+            removebtn.addEventListener("click", function(){
+                row.remove()
+            })
+        
+            tbody.append(row)
+            
+        });
+    })
+    
+</script>
